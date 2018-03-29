@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BlogDoGabrielAbee.Models.Post>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+//Olha lá em cima a propriedade model aonde a View Recebe os dados do Banco.
+<h2>Index</h2>
+
+@Html.ActionLink("Novo Post", "New", "Posts", null, new { @class = "btn btn-primary" })
+<br />
+<br />
+
+    <table id="posts" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Data do Post</th>
+                <th>Post</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(post.title, "Details", "Posts", new {id = post.Id}, null)
+                    </td>
+                    <td>
+                        @post.DateAdded
+                    </td>
+                    <td>
+                        @post.PostingBody
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
